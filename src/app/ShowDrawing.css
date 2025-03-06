@@ -1,0 +1,23 @@
+.drawing {
+    display: flex;
+    height: 90vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.drawingcontainer {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    padding: 20px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 7px;
+    background: #202124;
+}
