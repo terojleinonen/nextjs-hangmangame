@@ -32,6 +32,7 @@ export default function Home() {
    
    const CheckGuess = (userGuess) => {
        const characterCount = new Set(toGuessChars).size;//individual characters count from toGUessChars array
+       console.log('userGuess: ',userGuess);
        
        if(counter===characterCount){
            setWinner(true);

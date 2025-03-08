@@ -100,16 +100,34 @@ const Keyboard = ({CharacterPressed}) => {
         if (keys.length > 1) {
             if (isShift) {
                 if (keys.length === 3) {
-                    if (keys[0] === '>') newContent = inputText + '>';
-                    else newContent = inputText + '_';
+                    if (keys[0] === '>') {
+                        newContent = inputText + '>';
+                        CharacterPressed('>');
+                    }
+                    else {
+                        newContent = inputText + '_';
+                        CharacterPressed('_');
+                    }
                 }
-                else newContent = inputText + keys[0];
+                else {
+                    newContent = inputText + keys[0];
+                    CharacterPressed(keys[0]);
+                }
             } else {
                 if (keys.length === 3) {
-                    if (keys[0] === '>') newContent = inputText + '.';
-                    else newContent = inputText + '-';
+                    if (keys[0] === '>') {
+                        newContent = inputText + '.';
+                        CharacterPressed('.');
+                    }
+                    else {
+                        newContent = inputText + '-';
+                        CharacterPressed('-');
+                    }
                 }
-                else newContent = inputText + keys[1];
+                else {
+                    newContent = inputText + keys[1];
+                    CharacterPressed(keys[1]);
+                }
             }
         } else {
             let character = ((isShift && isCaps) || (!isShift && !isCaps)) 
