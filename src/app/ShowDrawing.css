@@ -13,11 +13,21 @@
 }
 
 .container {
-    padding: 20px 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 7px;
     background: #202124;
+}
+
+@media screen and (max-width: 1024px) {
+    .drawing {
+        height: 70vh;
+    }
+    img {
+        height: 40vh;
+        width: auto;
+    }
+    
 }
