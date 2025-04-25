@@ -1,7 +1,7 @@
 const ShowWord = ({toGuessChars,guessedChars}) => {  
     
 
-    let SecretWord = toGuessChars.map((letter) => (guessedChars.includes(letter)? letter: "*"));
+    let SecretWord = toGuessChars.map((letter) => (guessedChars.includes(letter)? letter: "_ "));
     
     return (
         <div key={SecretWord.join("")}>
