@@ -85,11 +85,6 @@ export default function Home() {
         {/* Header section with the game title. */}
         <div className='header mb-8'> {/* Added margin-bottom */}
           <h1 className='text-5xl font-bold'>Hangman Word Guessing Game</h1> {/* Used Tailwind for consistency */}
-          <nav className="mt-4">
-            <a href="/google-books" className="text-xl text-blue-400 hover:text-blue-300 transition-colors">
-              Explore Google Books
-            </a>
-          </nav>
         </div>        
         {/* Game area containing the drawing and game controls. */}
         <div className='gamearea'>
