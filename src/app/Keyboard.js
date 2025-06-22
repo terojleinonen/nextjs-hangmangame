@@ -55,7 +55,7 @@ const Keyboard = ({CharacterPressed}) => {
                     <div className="row">
                         {['z', 'x', 'c', 'v', 'b', 'n', 'm']
                         .map((keyvalue) => (
-                            <div key={keyvalue} className='key'
+                            <div key={keyvalue} className='key' 
                                  onClick={() => handleKeyClick(keyvalue)}>
                                 <span>{keyvalue}</span>
                             </div>
