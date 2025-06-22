@@ -210,7 +210,7 @@ const Keyboard = ({CharacterPressed}) => {
                     {/* Second row of keys (qwerty layout). */}
                     <div className="row">
                         {['Tab', 'q', 'w', 'e', 'r', 't', 'y',
-                        'u', 'i', 'o', 'p', 'å', '{_[', '}_]', '|_\\']
+                        'u', 'i', 'o', 'p', '{_[', '}_]', '|_\\']
                         .map((keyvalue) => (
                             <div key={keyvalue} className='key' 
                                  onClick={() => handleKeyClick(keyvalue)}>
@@ -228,7 +228,7 @@ const Keyboard = ({CharacterPressed}) => {
                     {/* Third row of keys (asdfgh layout). */}
                     <div className="row">
                         {['Caps Lock', 'a', 's', 'd', 'f', 'g', 'h', 
-                        'j', 'k', 'l', 'ö', 'ä', ':_;', `"_'`, 'Enter']
+                        'j', 'k', 'l', ':_;', `"_'`, 'Enter']
                             .map((keyvalue) => (
                             <div key={keyvalue} className='key' 
                                  onClick={() => handleKeyClick(keyvalue)}>
