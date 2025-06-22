@@ -11,7 +11,7 @@ export default function GoogleBooksSearch() {
   const [totalItems, setTotalItems] = useState(0);
   const [sortBy, setSortBy] = useState('relevance'); // 'relevance' or 'newest'
   const [showFilters, setShowFilters] = useState(false); // State for filter menu visibility
-
+  
   // State for filters
   const [filterPrintType, setFilterPrintType] = useState('all'); // 'all', 'books', 'magazines'
   const [filterEbook, setFilterEbook] = useState('all'); // 'all', 'ebooks', 'free-ebooks', 'paid-ebooks'
@@ -38,7 +38,7 @@ export default function GoogleBooksSearch() {
       }
       const startIndex = (page - 1) * itemsPerPage;
       let url = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(searchTerm)}&key=${apiKey}&startIndex=${startIndex}&maxResults=${itemsPerPage}`;
-
+      
       // Apply sorting
       if (sortBy === 'newest') {
         url += '&orderBy=newest';
@@ -116,7 +116,7 @@ export default function GoogleBooksSearch() {
             disabled={loading}
             className="bg-blue-600 hover:bg-blue-700 text-white font-semibold p-3 rounded-md transition-colors disabled:opacity-50 flex items-center justify-center w-full sm:w-auto"
           >
-            {loading && !results.length ? (
+            {loading && !results.length ? ( 
               <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -125,7 +125,7 @@ export default function GoogleBooksSearch() {
               'Search'
             )}
           </button>
-
+          
           {/* Sort Dropdown */}
           <select
             value={sortBy}
@@ -157,33 +157,33 @@ export default function GoogleBooksSearch() {
 
       {/* Sliding Filter Menu */}
       {showFilters && (
-        <div
+        <div 
           className="fixed inset-y-0 right-0 w-full max-w-xs sm:max-w-sm bg-gray-800 shadow-xl z-50 p-6 transform transition-transform duration-300 ease-in-out"
           // Applying transform based on showFilters for slide-in/out effect
-          style={{ transform: showFilters ? 'translateX(0)' : 'translateX(100%)' }}
+          style={{ transform: showFilters ? 'translateX(0)' : 'translateX(100%)' }} 
           role="dialog" // Accessibility
           aria-modal="true" // Accessibility
           aria-labelledby="filter-menu-title" // Accessibility
         >
           <div className="flex justify-between items-center mb-6">
             <h2 id="filter-menu-title" className="text-2xl font-semibold text-white">Filters</h2>
-            <button
-              onClick={() => setShowFilters(false)}
+            <button 
+              onClick={() => setShowFilters(false)} 
               className="text-gray-400 hover:text-white transition-colors"
               aria-label="Close filters menu"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
           </div>
-
+          
           {/* Filter Options */}
           <div className="space-y-6">
             {/* Print Type Filter */}
             <div>
               <label htmlFor="filter-print-type" className="block text-sm font-medium text-gray-300 mb-1">Print Type</label>
-              <select
-                id="filter-print-type"
-                name="filter-print-type"
+              <select 
+                id="filter-print-type" 
+                name="filter-print-type" 
                 value={filterPrintType}
                 onChange={(e) => setFilterPrintType(e.target.value)}
                 className="w-full p-2 bg-gray-700 text-white rounded-md border border-gray-600 focus:ring-blue-500 focus:border-blue-500"
@@ -197,9 +197,9 @@ export default function GoogleBooksSearch() {
             {/* eBook Filter */}
             <div>
               <label htmlFor="filter-ebook" className="block text-sm font-medium text-gray-300 mb-1">eBook Availability</label>
-              <select
-                id="filter-ebook"
-                name="filter-ebook"
+              <select 
+                id="filter-ebook" 
+                name="filter-ebook" 
                 value={filterEbook}
                 onChange={(e) => setFilterEbook(e.target.value)}
                 className="w-full p-2 bg-gray-700 text-white rounded-md border border-gray-600 focus:ring-blue-500 focus:border-blue-500"
@@ -210,11 +210,11 @@ export default function GoogleBooksSearch() {
                 <option value="paid-ebooks">Paid eBooks</option>
               </select>
             </div>
-
+            
             {/* Placeholder for Language Filter - can be implemented similarly if desired
             <div>
               <label htmlFor="filter-lang" className="block text-sm font-medium text-gray-300 mb-1">Language (e.g., en, es, fr)</label>
-              <input
+              <input 
                 type="text"
                 id="filter-lang"
                 name="filter-lang"
@@ -228,7 +228,7 @@ export default function GoogleBooksSearch() {
           </div>
 
           <div className="mt-8 pt-6 border-t border-gray-700">
-            <button
+            <button 
               onClick={() => {
                 handleSearch(1, true); // Apply filters and trigger new search, reset to page 1
                 setShowFilters(false); // Close menu
@@ -242,8 +242,8 @@ export default function GoogleBooksSearch() {
       )}
       {/* Overlay to close filter menu on click outside */}
       {showFilters && (
-         <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-40"
+         <div 
+            className="fixed inset-0 bg-black bg-opacity-50 z-40" 
             onClick={() => setShowFilters(false)}
             aria-hidden="true" // For screen readers, as the dialog is modal
         ></div>
@@ -265,9 +265,9 @@ export default function GoogleBooksSearch() {
                 <p className="text-gray-400 mb-1">By: {book.volumeInfo.authors.join(', ')}</p>
               )}
               {book.volumeInfo.imageLinks?.thumbnail && (
-                <img
-                  src={book.volumeInfo.imageLinks.thumbnail}
-                  alt={`Cover of ${book.volumeInfo.title}`}
+                <img 
+                  src={book.volumeInfo.imageLinks.thumbnail} 
+                  alt={`Cover of ${book.volumeInfo.title}`} 
                   className="w-20 h-auto float-left mr-4 mb-2 rounded shadow"
                 />
               )}
@@ -278,7 +278,7 @@ export default function GoogleBooksSearch() {
           ))}
         </div>
       )}
-
+      
       {totalItems > 0 && totalPages > 1 && (
         <div className="pagination-controls mt-8 flex justify-center items-center space-x-2">
           <button
