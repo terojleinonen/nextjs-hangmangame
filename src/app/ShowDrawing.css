@@ -1,33 +1,6 @@
-.drawing {
-    display: flex;
-    height: 90vh;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.drawingcontainer {
-    width: 90%;
-    display: flex;
-    justify-content: center;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 7px;
-    background: #202124;
-}
-
-@media screen and (max-width: 1024px) {
-    .drawing {
-        height: 70vh;
-    }
-    img {
-        height: 40vh;
-        width: auto;
-    }
-    
-}
+/*
+  All styles previously here (.drawing, .drawingcontainer, .container, and responsive img styles)
+  are now handled by Tailwind CSS utility classes directly in the ShowDrawing.js component.
+  This file can be emptied or deleted if no other component uses it.
+  For now, leaving it empty.
+*/
