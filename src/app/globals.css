@@ -1,22 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: lightblue;
-  --foreground: black;
+  /* These will be overridden by Tailwind classes like bg-background and text-on-background,
+     but can serve as a fallback or for non-Tailwind styled elements if any. */
+  --background-rgb: 255, 255, 255; /* Corresponds to #FFFFFF */
+  --foreground-rgb: 0, 0, 0;     /* Corresponds to #000000 */
+
+  /* Material Design specific custom properties for reference if needed outside Tailwind */
+  --md-sys-color-primary-rgb: 98, 0, 238;
+  --md-sys-color-on-primary-rgb: 255, 255, 255;
+  --md-sys-color-secondary-rgb: 3, 218, 198;
+  --md-sys-color-on-secondary-rgb: 0,0,0;
+  --md-sys-color-surface-rgb: 255, 255, 255;
+  --md-sys-color-on-surface-rgb: 0, 0, 0;
+  --md-sys-color-background-rgb: 255, 255, 255;
+  --md-sys-color-on-background-rgb: 0, 0, 0;
+  --md-sys-color-error-rgb: 176, 0, 32;
+  --md-sys-color-on-error-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: black;
-    --foreground: white;
+    --background-rgb: 18, 18, 18; /* Corresponds to #121212 */
+    --foreground-rgb: 255, 255, 255; /* Corresponds to #FFFFFF */
+
+    /* Material Design specific custom properties for dark theme */
+    --md-sys-color-primary-rgb: 187, 134, 252; /* Lighter purple for dark theme */
+    --md-sys-color-on-primary-rgb: 0,0,0;
+    --md-sys-color-secondary-rgb: 3, 218, 198; /* Often same or slightly adjusted */
+    --md-sys-color-on-secondary-rgb: 0,0,0;
+    /* In Dark theme, surface colors are often overlays on top of the background.
+       The main background is #121212. Surfaces get lighter with higher elevation.
+       We'll primarily control this with Tailwind's opacity on a white overlay or specific dark surface colors.
+       For simplicity here, we'll set a base dark surface.
+    */
+    --md-sys-color-surface-rgb: 30, 30, 30; /* Slightly lighter than #121212, e.g. #1E1E1E */
+    --md-sys-color-on-surface-rgb: 255, 255, 255;
+    --md-sys-color-background-rgb: 18, 18, 18;
+    --md-sys-color-on-background-rgb: 255, 255, 255;
+    --md-sys-color-error-rgb: 207, 102, 121; /* Lighter red for dark theme */
+    --md-sys-color-on-error-rgb: 0,0,0;
   }
 }
 
 body {
   text-align: center;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Tailwind utility classes (e.g., `bg-background text-on-background`) should primarily control these.
+     The CSS variables provide fallbacks and are available for non-Tailwind contexts. */
+  color: rgb(var(--foreground-rgb));
+  background-color: rgb(var(--background-rgb));
+  /* font-family is now handled by Tailwind's base styles via tailwind.config.mjs */
 }
