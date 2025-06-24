@@ -89,32 +89,32 @@ export default function Home() {
           <span className="material-symbols-outlined text-4xl sm:text-5xl mr-2 sm:mr-3 text-primary dark:text-primary-dark">joystick</span>
           <h1 className='text-3xl sm:text-4xl md:text-5xl font-bold'>Hangman Game</h1> {/* Simplified title, Tailwind handles color via body */}
         </div>        
-
-        {/* Game area: flex container for drawing and controls.
+        
+        {/* Game area: flex container for drawing and controls. 
             On large screens (lg, 1024px) and up, it's a row. On smaller screens, it's a column.
             Order for smaller screens (<lg): Title -> Drawing -> Word -> Keyboard.
         */}
         <div className='gamearea w-full flex flex-col lg:flex-row lg:justify-around items-center lg:items-start gap-4 sm:gap-6'>
-            {/* Displays the hangman drawing based on wrong guesses.
+            {/* Displays the hangman drawing based on wrong guesses. 
                 The ShowDrawing component now has its own width/max-width and height.
             */}
             {showDrawing} {/* This will be the first item in flex-col for <lg, and first in flex-row for lg+ */}
-
+            
             {/* Container for game controls: word display and keyboard/play again button. */}
             {/* This whole block will be second in flex-col for <lg, and second in flex-row for lg+ */}
-            <div className='gamecontrols flex flex-col items-center justify-start w-full lg:w-auto'>
+            <div className='gamecontrols flex flex-col items-center justify-start w-full lg:w-auto'> 
               {/* Component to display the word to be guessed, showing correctly guessed characters. */}
               <ShowWord toGuessChars={toGuessChars} guessedChars={guessedChars}/>
               {/* Conditionally renders the Keyboard component or the "Play Again!" button. */}
               {/* Keyboard is shown if the wrong guess count is less than 5 and the user has not won. */}
               {/* "Play Again!" button is shown if the game is over (either won or lost). */}
               {(wrongGuessCount < 5 && winner === false)?<Keyboard CharacterPressed={CharacterPressed}/>
-              :<button
-                  onClick={InitGame}
+              :<button 
+                  onClick={InitGame} 
                   className="mt-8 bg-secondary text-on-secondary font-medium uppercase text-lg px-8 py-3 rounded shadow-md-2 hover:bg-secondary-variant hover:shadow-md-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-variant transition-all duration-150 ease-in-out"
                 >
                   Play Again!
-                </button>}
+                </button>}          
           </div>        
         </div>
       </div>          
