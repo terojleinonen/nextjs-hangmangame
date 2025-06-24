@@ -32,18 +32,29 @@ const Keyboard = ({ CharacterPressed }) => {
     const thirdRowKeys = ['z', 'x', 'c', 'v', 'b', 'n', 'm'];
 
     return (
-        <div className='keyboard'>
-            {/* Container for the keyboard layout. */}
-            <div className="keyboardcontainer">
-                <div className="container">
-                    {/* First row of keys */}
-                    <div className="row">
-                        {['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'å']
-                        .map((keyvalue) => (
-                            <div key={keyvalue} className='key' 
-                                 onClick={() => handleKeyClick(keyvalue)}>
-                                <span>{keyvalue}</span>
-                            </div>
+        // This is the main container for the entire keyboard component.
+        // Default: fixed to bottom for mobile.
+        // md and up: relative positioning in normal flow.
+        <div className='keyboard
+            w-full flex flex-col justify-center items-center
+            fixed bottom-0 left-0 right-0 z-50 p-2 sm:p-3 bg-background dark:bg-neutral-800 shadow-lg
+            md:relative md:bottom-auto md:left-auto md:right-auto md:z-auto md:p-0 md:bg-transparent dark:md:bg-transparent md:shadow-none
+            md:min-h-[200px] md:pb-5
+            transition-all duration-300 ease-in-out'>
+            {/* This inner div is the actual visual keyboard panel */}
+            <div className="w-full max-w-3xl mx-auto">
+                {/* The keyboard panel itself. bg-surface is white/light gray, dark:bg-neutral-800 is very dark gray */}
+                <div className="bg-surface dark:bg-neutral-800 p-2 sm:p-3 md:p-4 rounded-lg shadow-md-4">
+                    {/* First row */}
+                    <div className="flex justify-center mb-1">
+                        {firstRowKeys.map((keyvalue) => (
+                            <button
+                                key={keyvalue}
+                                className={`${keyBaseClasses}`}
+                                onClick={() => handleKeyClick(keyvalue)}
+                            >
+                                {keyvalue}
+                            </button>
                         ))}
                     </div>
                     {/* Second row */}
