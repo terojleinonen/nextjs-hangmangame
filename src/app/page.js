@@ -80,8 +80,10 @@ export default function Home() {
   return (
     // Main container for the page.
     <div className="min-h-screen flex flex-col items-center justify-start pt-6 sm:pt-10 px-2 sm:px-4 bg-background text-on-background">
-      {/* Game layout container. Flex column, centered items, with max width. */}
-      <div className='game w-full max-w-4xl flex flex-col items-center'>
+      {/* Game layout container. Flex column, centered items, with max width.
+          Added padding-bottom for mobile to account for fixed keyboard, md:pb-6 for normal spacing on larger screens.
+      */}
+      <div className='game w-full max-w-4xl flex flex-col items-center pb-56 md:pb-6'>
         {/* Header section with the game title. */}
         <div className='header mb-6 sm:mb-8 flex items-center justify-center text-center'>
           <span className="material-symbols-outlined text-4xl sm:text-5xl mr-2 sm:mr-3 text-primary dark:text-primary-dark">joystick</span>

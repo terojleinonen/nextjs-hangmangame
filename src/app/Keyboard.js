@@ -32,23 +32,18 @@ const Keyboard = ({ CharacterPressed }) => {
     const thirdRowKeys = ['z', 'x', 'c', 'v', 'b', 'n', 'm'];
 
     return (
-        // The outer 'keyboard' div might still use some styles from Keyboard.css for overall page positioning
-        // We can refactor this later if needed. For now, focus on the keyboard itself.
         <div className='keyboard'>
-            {/* keyboardcontainer equivalent */}
-            <div className="w-full max-w-3xl mx-auto mt-4">
-                {/* container equivalent: bg-surface might be good for dark mode too, or a light gray */}
-                <div className="bg-surface dark:bg-neutral-800 p-2 sm:p-3 md:p-4 rounded-lg shadow-md-4">
-                    {/* First row */}
-                    <div className="flex justify-center mb-1">
-                        {firstRowKeys.map((keyvalue) => (
-                            <button
-                                key={keyvalue}
-                                className={`${keyBaseClasses}`}
-                                onClick={() => handleKeyClick(keyvalue)}
-                            >
-                                {keyvalue}
-                            </button>
+            {/* Container for the keyboard layout. */}
+            <div className="keyboardcontainer">
+                <div className="container">
+                    {/* First row of keys */}
+                    <div className="row">
+                        {['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'å']
+                        .map((keyvalue) => (
+                            <div key={keyvalue} className='key' 
+                                 onClick={() => handleKeyClick(keyvalue)}>
+                                <span>{keyvalue}</span>
+                            </div>
                         ))}
                     </div>
                     {/* Second row */}
