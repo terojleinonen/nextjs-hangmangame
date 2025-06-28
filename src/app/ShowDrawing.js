@@ -23,13 +23,13 @@ const ShowDrawing = ({ drawingIndex }) => {
     <div
       className="
         bg-surface dark:bg-neutral-700
-        p-3 sm:p-4
+        p-2 sm:p-3
         rounded-lg
         shadow-md-1
-        mb-4 sm:mb-6
+        mb-3 sm:mb-4
         flex justify-center items-center
-        w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto
-        h-56 sm:h-64 md:h-80 lg:h-96
+        w-full max-w-[280px] sm:max-w-xs md:max-w-sm mx-auto
+        h-48 sm:h-56 md:h-64 lg:h-72 xl:h-80
         overflow-hidden
       "
     >
@@ -41,7 +41,7 @@ const ShowDrawing = ({ drawingIndex }) => {
         />
       ) : (
         // Optional: Placeholder content if no image is to be shown (e.g., initial state)
-        <div className="text-on-surface/50 dark:text-white/50">
+        <div className="text-on-surface/50 dark:text-white/50 text-sm sm:text-base">
           Waiting to start...
         </div>
       )}
