@@ -19,11 +19,11 @@ const Keyboard = ({ CharacterPressed }) => {
       bg-primary dark:bg-primary-dark
       text-on-primary dark:text-on-primary-dark
       hover:bg-primary-variant dark:hover:bg-primary-dark-hover
-      px-2 sm:px-3 py-2 rounded shadow-md-1 hover:shadow-md-2
-      focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-variant dark:focus:ring-primary-dark
-      uppercase text-sm font-medium
-      min-w-[36px] h-12 sm:min-w-[48px] sm:h-14
-      flex items-center justify-center m-1
+      p-1 rounded shadow-md-1 hover:shadow-md-2
+      focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-primary-variant dark:focus:ring-primary-dark
+      uppercase text-xs sm:text-sm font-medium
+      min-w-[28px] h-10 sm:min-w-[36px] sm:h-12 md:min-w-[40px] md:h-14
+      flex items-center justify-center m-0.5 sm:m-1
       transition-all duration-150 ease-in-out
     `;
 
@@ -37,16 +37,16 @@ const Keyboard = ({ CharacterPressed }) => {
         // md and up: relative positioning in normal flow.
         <div className='keyboard
             w-full flex flex-col justify-center items-center
-            fixed bottom-0 left-0 right-0 z-50 p-2 sm:p-3 bg-background dark:bg-neutral-800 shadow-lg
+            fixed bottom-0 left-0 right-0 z-50 p-1 bg-background dark:bg-neutral-800 shadow-lg
             md:relative md:bottom-auto md:left-auto md:right-auto md:z-auto md:p-0 md:bg-transparent dark:md:bg-transparent md:shadow-none
-            md:min-h-[200px] md:pb-5
+            md:mt-4 md:min-h-[180px] md:pb-0
             transition-all duration-300 ease-in-out'>
             {/* This inner div is the actual visual keyboard panel */}
-            <div className="w-full max-w-3xl mx-auto">
+            <div className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl mx-auto"> {/* Responsive max-width */}
                 {/* The keyboard panel itself. bg-surface is white/light gray, dark:bg-neutral-800 is very dark gray */}
-                <div className="bg-surface dark:bg-neutral-800 p-2 sm:p-3 md:p-4 rounded-lg shadow-md-4">
+                <div className="bg-surface dark:bg-neutral-800 p-1 sm:p-2 md:p-3 rounded-md shadow-md-4">
                     {/* First row */}
-                    <div className="flex justify-center mb-1">
+                    <div className="flex justify-center mb-0.5 sm:mb-1">
                         {firstRowKeys.map((keyvalue) => (
                             <button
                                 key={keyvalue}
@@ -58,7 +58,7 @@ const Keyboard = ({ CharacterPressed }) => {
                         ))}
                     </div>
                     {/* Second row */}
-                    <div className="flex justify-center mb-1">
+                    <div className="flex justify-center mb-0.5 sm:mb-1">
                         {secondRowKeys.map((keyvalue) => (
                             <button
                                 key={keyvalue}
