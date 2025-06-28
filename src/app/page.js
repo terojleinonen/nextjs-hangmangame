@@ -2,7 +2,7 @@
 import ShowDrawing from './ShowDrawing'
 import ShowWord from './ShowWord'
 import Keyboard from './Keyboard'
-import RandomWords from './data/RandomWords.json'
+import words from './data/words.json'
 import { useState, useEffect} from 'react';
 // import './Home.css'; // Styles are now handled by Tailwind utility classes
 
@@ -25,8 +25,8 @@ export default function Home() {
    
    // Function to initialize or reset the game.
    const InitGame = ()=>{
-       // Selects a random word from RandomWords.json and converts it into an array of characters.
-       settoGuessChars(Array.from(RandomWords[Math.floor(Math.random() * RandomWords.length)]));
+       // Selects a random word from words.json and converts it into an array of characters.
+       settoGuessChars(Array.from(words[Math.floor(Math.random() * words.length)]));
        // Resets the hangman drawing.
        setShowDrawing(null);
        // Resets the winner status.
