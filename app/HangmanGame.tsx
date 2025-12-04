@@ -12,15 +12,26 @@ import WORDS from "./words.json"; // Import words from JSON file
 //const WORDS = ["BAT", "GHOST", "RAVEN", "SPIDER", "CROW", "SHADOW"];
 
 export default function HangmanGame() {
-  const [word, setWord] = useState(() => WORDS[Math.floor(Math.random() * WORDS.length)].toUpperCase());
+  const [word, setWord] = useState("");
   const [guesses, setGuesses] = useState<string[]>([]);
   const [wrong, setWrong] = useState(0);
   const [shake, setShake] = useState(false);
 
+  useEffect(() => {
+    // Select a word only on the client-side to prevent hydration mismatch
+    const newWord = WORDS[Math.floor(Math.random() * WORDS.length)].toUpperCase();
+    setWord(newWord);
+  }, []);
+
   const max = 6;
-  const isWin = word.split("").every((l) => guesses.includes(l));
+  const isWin = word ? word.split("").every((l) => guesses.includes(l)) : false;
   const isLose = wrong >= max;
-  console.log("Current word:", word);
+
+  useEffect(() => {
+    if (word) {
+      console.log("Current word:", word);
+    }
+  }, [word]);
 
   useEffect(() => {
   if (isLose) {
@@ -43,7 +54,7 @@ export default function HangmanGame() {
   }, []);
 
   const onGuess = (letter: string) => {
-    if (guesses.includes(letter)) return;
+    if (guesses.includes(letter) || !word) return;
     setGuesses((g) => [...g, letter]);
 
     if (!word.includes(letter)) {
@@ -55,11 +66,25 @@ export default function HangmanGame() {
 
   const reset = () => {
     document.body.classList.remove("hide-ink");
-    setWord(WORDS[Math.floor(Math.random() * WORDS.length)].toUpperCase());
+    const newWord = WORDS[Math.floor(Math.random() * WORDS.length)].toUpperCase();
+    setWord(newWord);
     setGuesses([]);
     setWrong(0);
-    console.log("New word:", word);
+    console.log("New word:", newWord);
   };
+
+  // Render a loading state while the word is being selected to avoid layout shift
+  if (!word) {
+    return (
+      <div className={styles.frameWrap}>
+        <div className="burton-paper-texture" />
+        <header className={styles.header}>
+            <h1 className={styles.title}>HANGMAN</h1>
+        </header>
+        {/* You could add a more explicit loading indicator here */}
+      </div>
+    );
+  }
 
   return (
     <div className={styles.frameWrap}>
