@@ -203,3 +203,19 @@
     opacity: 0;
   }
 }
+
+@media (max-width: 600px) {
+  .letterBox {
+    width: 28px;
+    height: 38px;
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 400px) {
+  .letterBox {
+    width: 24px;
+    height: 34px;
+    font-size: 20px;
+  }
+}

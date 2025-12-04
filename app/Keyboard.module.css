@@ -129,3 +129,27 @@
   50% { transform: rotate(calc(var(--tilt)+1.5deg)) translateY(-6px); }
   100% { transform: rotate(var(--tilt)) translateY(0); }
 }
+
+@media (max-width: 600px) {
+  .key {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+  }
+
+  .row {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 400px) {
+  .key {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  .row {
+    gap: 6px;
+  }
+}

@@ -112,3 +112,15 @@
 
   100% { transform: translate(0,0) rotate(0) scale(1); }
 }
+
+@media (max-width: 600px) {
+  .wordLabel {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 400px) {
+  .wordLabel {
+    font-size: 18px;
+  }
+}

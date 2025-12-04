@@ -5,6 +5,17 @@
 /* Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Special+Elite&display=swap');
 
+/* Centers the entire app and makes it scale gracefully */
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  background: #e8e0d6; /* your parchment */
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
 /* Theme tokens */
 :root {
   --burton-bg: #15110f;
@@ -26,6 +37,10 @@ html, body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  overflow-x: hidden;
+
+  --max-width: 900px;
+  --padding-h: 20px;
 
   background:
     radial-gradient(circle at top left, rgba(255,255,255,0.12), transparent 55%),
