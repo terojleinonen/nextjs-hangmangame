@@ -39,7 +39,7 @@ html, body {
   min-height: 100vh;
   overflow-x: hidden;
 
-  --max-width: 900px;
+  --max-width: 1200px;
   --padding-h: 20px;
 
   background:
