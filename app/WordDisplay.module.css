@@ -1,0 +1,205 @@
+.label {
+  font-family: var(--burton-font-heading);
+  letter-spacing: 0.12em;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.slots {
+  display: flex;
+  gap: 10px;
+}
+
+.slot {
+  min-width: 24px;
+  border-bottom: 2px solid rgba(0,0,0,0.35);
+  font-size: 32px;
+  text-align: center;
+  position: relative;
+}
+
+/* Reveal pop animation */
+.revealed {
+  animation: pop 180ms cubic-bezier(0.34,1.56,0.64,1);
+}
+
+@keyframes pop {
+  0% { transform: translateY(6px) scale(.9); opacity: 0; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* ============================================================
+   B5 — INK BLEED EFFECT
+============================================================ */
+.bleed {
+  position: relative;
+  color: var(--burton-ink);
+  animation: inkBleed 2.6s ease-out forwards;
+}
+
+.bleed::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 8px;
+  background: var(--burton-ink);
+  opacity: 0;
+  filter: blur(1px);
+  animation: inkBleedGlow 2.6s ease-out forwards;
+}
+
+@keyframes inkBleed {
+  0% {
+    color: var(--burton-ink);
+    text-shadow: none;
+  }
+  50% {
+    color: #0c0705;
+    text-shadow: 0 0 2px rgba(0,0,0,0.3);
+  }
+  100% {
+    color: #000;
+    text-shadow:
+      0 0 3px rgba(0,0,0,0.4),
+      0 0 6px rgba(0,0,0,0.3);
+  }
+}
+
+@keyframes inkBleedGlow {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+    filter: blur(1px);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(1.8);
+    filter: blur(3px);
+  }
+  100% {
+    opacity: 0.7;
+    transform: scale(3.2);
+    filter: blur(6px);
+  }
+}
+
+/* ============================================================
+   2D++ — ASH CRUMBLE DISINTEGRATION
+============================================================ */
+
+.ash {
+  position: relative;
+  display: inline-block;
+  animation:
+    ashBreakdown 0.9s steps(2, end) forwards,
+    ashFlicker 0.4s steps(2, jump-end) 3;
+  animation-delay: calc(var(--delay) * 0.5), var(--delay);
+}
+
+@keyframes ashFlicker {
+  0% { filter: brightness(1) contrast(1); }
+  30% { filter: brightness(0.7) contrast(1.4); }
+  70% { filter: brightness(0.6) contrast(1.8); }
+  100% { filter: brightness(0.8) contrast(1.2); }
+}
+
+@keyframes ashBreakdown {
+  0% { opacity: 1; filter: none; }
+  40% { opacity: 0.9; filter: blur(0.5px) contrast(1.4); }
+  70% { opacity: 0.7; filter: blur(1px) contrast(1.6); }
+  100% { opacity: 0.6; filter: blur(1.4px) contrast(1.9); }
+}
+
+/* Particles */
+.ash::after,
+.ash::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3px;
+  height: 3px;
+  background: var(--burton-ink);
+  opacity: 0;
+  border-radius: 1px;
+  pointer-events: none;
+  animation: ashFall 1.3s linear forwards;
+  animation-delay: calc(0.2s + var(--delay));
+}
+
+.ash::before {
+  animation-delay: calc(0.4s + var(--delay));
+}
+
+@keyframes ashFall {
+  0% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  40% {
+    opacity: 0.45;
+    transform: translate(-40%, 10px) scale(0.9);
+  }
+  70% {
+    opacity: 0.25;
+    transform: translate(-60%, 26px) scale(0.7);
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-70%, 40px) scale(0.5);
+    filter: blur(2px);
+  }
+}
+
+/* ============================================================
+   2D — TWIST + FALL OFF PAGE
+============================================================ */
+
+.fall {
+  display: inline-block;
+  position: relative;
+
+  /* two-phase animation */
+  animation:
+    letterTwist 0.8s ease-in forwards,
+    letterFall 1.4s cubic-bezier(0.25, 0.6, 0.3, 1) forwards;
+  animation-delay:
+    calc(0.6s + var(--delay)),
+    calc(1.2s + var(--delay)); /* fall happens after twist */
+  transform-origin: top center;
+}
+
+@keyframes letterTwist {
+  0% { transform: rotate(0deg) scale(1); }
+  20% { transform: rotate(-8deg) scale(1.05) translateX(-1px); }
+  35% { transform: rotate(6deg) scale(0.97) translateX(1px); }
+  55% { transform: rotate(-12deg) scale(1.05) translateY(-2px); }
+  75% { transform: rotate(9deg) scale(0.93); }
+  100% { transform: rotate(-10deg) scale(1.1); }
+}
+
+@keyframes letterFall {
+  0% {
+    transform: translateY(0) rotate(-10deg) scale(1.1);
+    opacity: 1;
+  }
+  20% {
+    transform: translateY(14px) rotate(-20deg) scale(1.05);
+  }
+  45% {
+    transform: translateY(36px) rotate(15deg) scale(1);
+  }
+  65% {
+    transform: translateY(60px) rotate(-25deg) scale(0.92);
+    opacity: 0.85;
+  }
+  80% {
+    transform: translateY(82px) rotate(18deg) scale(0.85);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(110px) rotate(30deg) scale(0.6);
+    opacity: 0;
+  }
+}

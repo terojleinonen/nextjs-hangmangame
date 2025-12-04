@@ -1,0 +1,114 @@
+/* ============================================================
+   GLOBAL BURTON TITLE ANIMATION
+   - wobble
+   - drop-frame glitch
+   - intensity-controlled speed + blur
+============================================================ */
+
+.wordLabel {
+  font-family: var(--burton-font-heading);
+  font-size: 28px;
+  letter-spacing: 0.12em;
+  color: #1a0f0c;
+  display: inline-block;
+  text-align: center;
+
+  text-shadow:
+    0 2px 2px rgba(0,0,0,0.4),
+    1px 0px 0px rgba(0,0,0,0.25),
+    -1px 0px 0px rgba(0,0,0,0.25);
+
+  /* Animation speed increases as wrongCount increases */
+  animation:
+    burtonStopMotion calc(2.9s - (var(--intensity) * 0.3s)) steps(6, end) infinite,
+    burtonDropFrame calc(4.7s - (var(--intensity) * 0.4s)) steps(1, end) infinite;
+
+  /* Title gets shakier / blurrier as intensity rises */
+  filter: blur(calc(var(--intensity) * 0.3px));
+  transform-origin: center;
+}
+
+/* ============================================================
+   LETTER-BY-LETTER STOP-MOTION ANIMATION
+============================================================ */
+
+.letter {
+  display: inline-block;
+
+  /* Speed increases with wrongCount */
+  animation: letterStopMotion calc(1.4s - (var(--intensity) * 0.15s)) steps(4, end) infinite;
+  animation-delay: var(--delay);
+}
+
+/* Micro jitter animation (scaled by intensity) */
+@keyframes letterStopMotion {
+  0%   { transform: translate(0, 0) rotate(0deg) scale(1); }
+
+  25%  { transform:
+          translate(calc(-1px - var(--intensity) * 0.3px),
+                    calc(1px + var(--intensity) * 0.2px))
+          rotate(calc(-1deg - var(--intensity) * 0.3deg))
+          scale(1.02);
+        }
+
+  50%  { transform:
+          translate(calc(1px + var(--intensity) * 0.3px),
+                    calc(-1px - var(--intensity) * 0.2px))
+          rotate(calc(1deg + var(--intensity) * 0.3deg))
+          scale(0.98);
+        }
+
+  75%  { transform:
+          translate(0,
+                    calc(1px + var(--intensity) * 0.2px))
+          rotate(calc(-2deg - var(--intensity) * 0.5deg))
+          scale(1.03);
+        }
+
+  100% { transform: translate(0,0) rotate(0deg) scale(1); }
+}
+
+/* ============================================================
+   GLOBAL WOBBLE (whole title moves as one object)
+============================================================ */
+
+@keyframes burtonStopMotion {
+  0%   { transform: rotate(-1deg) scale(1.03) translateY(0); }
+  8%   { transform: rotate(0deg) scale(1.00) translateY(-1px); }
+  16%  { transform: rotate(1deg) scale(1.04) translateY(1px); }
+  33%  { transform: rotate(-2deg) scale(1.02) translateY(-2px); }
+  50%  { transform: rotate(1deg) scale(1.06) translateY(1px); }
+  66%  { transform: rotate(-1deg) scale(1.01) translateY(-1px); }
+  83%  { transform: rotate(0deg) scale(1.05) translateY(0px); }
+  100% { transform: rotate(-1deg) scale(1.03) translateY(0); }
+}
+
+/* ============================================================
+   DROP-FRAME GLITCH (random jump frames)
+============================================================ */
+
+@keyframes burtonDropFrame {
+  0%   { transform: translate(0,0) rotate(0deg) scale(1); }
+
+  12%  { transform: translate(-1px, 0) rotate(-1deg) scale(1.01); }
+  13%  { transform: translate(3px, -3px) rotate(2deg) scale(0.98); }
+  14%  { transform: translate(0,0) rotate(0) scale(1); }
+
+  28%  { transform: translate(1px, -1px) rotate(1deg) scale(1.03); }
+  29%  { transform: translate(-4px, 2px) rotate(-2deg) scale(0.97); }
+  30%  { transform: translate(0,0) rotate(0) scale(1); }
+
+  46%  { transform: translate(-1px, 1px) rotate(0.5deg) scale(1.02); }
+  47%  { transform: translate(4px,-2px) rotate(-2deg) scale(0.94); }
+  48%  { transform: translate(0,0) rotate(0) scale(1); }
+
+  62%  { transform: translate(1px,0px) rotate(1deg) scale(1.03); }
+  63%  { transform: translate(-3px, 2px) rotate(3deg) scale(0.96); }
+  64%  { transform: translate(0,0) rotate(0) scale(1); }
+
+  78%  { transform: translate(-1px,-1px) rotate(-1deg) scale(1.04); }
+  79%  { transform: translate(3px, 0px) rotate(2deg) scale(0.98); }
+  80%  { transform: translate(0,0) rotate(0) scale(1); }
+
+  100% { transform: translate(0,0) rotate(0) scale(1); }
+}

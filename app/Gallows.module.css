@@ -1,0 +1,26 @@
+.gallows {
+  width: 200px;
+  stroke: var(--burton-ink);
+  fill: none;
+}
+
+/* stop-motion jitter puppet effect */
+.char {
+  transform-origin: 80px 35px;
+  animation: char-jitter 250ms infinite steps(1);
+}
+
+@keyframes char-jitter {
+  0% { transform: translate(0,0); }
+  50% { transform: translate(0.4px,-0.3px); }
+  100% { transform: translate(0,0); }
+}
+
+.last .char {
+  animation: sway 1.2s ease-in-out infinite;
+}
+
+@keyframes sway {
+  0%,100% { transform: rotate(0deg); }
+  50% { transform: rotate(2deg); }
+}

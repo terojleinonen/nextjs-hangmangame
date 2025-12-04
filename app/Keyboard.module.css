@@ -1,0 +1,131 @@
+/* ============================================================
+   ANTIQUE TYPEWRITER KEYBOARD (Burton Style)
+   Curved rows • crooked key tilt • ink blots
+   Ink veins • rattle mode • possessed keys • shadow creature
+============================================================ */
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 26px auto 0 auto;
+  position: relative;
+}
+
+/* Curved Underwood rows */
+.row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  transform: translateY(calc((var(--row) - 1) * 6px));
+}
+
+/* ============================================================
+   TYPEWRITER KEYS
+============================================================ */
+
+.key {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 3px solid #5a4838;
+  background: radial-gradient(circle at 50% 45%, #f8f2e8 55%, #e9ddc9 100%);
+  background-blend-mode: multiply;
+
+  font-family: var(--burton-font-heading);
+  font-size: 20px;
+  letter-spacing: 0.05em;
+  color: #1b1713;
+  position: relative;
+
+  box-shadow:
+    0 3px 6px rgba(0,0,0,0.45),
+    inset 0 1px 2px rgba(0,0,0,0.35),
+    inset 0 -2px 3px rgba(255,255,255,0.3);
+
+  text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+  cursor: pointer;
+
+  /* Burton crooked angle */
+  transform: rotate(var(--tilt));
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
+}
+
+/* Hover wobble */
+.key:hover:not(:disabled) {
+  transform: rotate(calc(var(--tilt) + -2deg)) scale(1.03) translateY(-2px);
+}
+
+/* Press */
+.key:active {
+  transform: rotate(calc(var(--tilt) + 1deg)) scale(0.95) translateY(3px);
+}
+
+/* Used key (pressed previously) */
+.used {
+  opacity: 0.55;
+  pointer-events: none;
+  transform: rotate(var(--tilt)) scale(0.95);
+}
+
+/* Disabled key */
+.key:disabled {
+  cursor: not-allowed;
+  transform: rotate(var(--tilt)) translateY(2px) scale(0.95);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.5);
+}
+
+
+/* ============================================================
+   RATTLE MODE (4+ wrong)
+============================================================ */
+
+.rattle {
+  animation: keyboardRattle 220ms infinite;
+}
+
+@keyframes keyboardRattle {
+  0% { transform: translateX(0) rotate(0deg); }
+  25% { transform: translateX(-2px) rotate(-1deg); }
+  50% { transform: translateX(2px) rotate(1deg); }
+  75% { transform: translateX(-1px) rotate(0.5deg); }
+  100% { transform: translateX(0) rotate(0deg); }
+}
+
+/* Individual possessed wiggle */
+.rattle .key {
+  animation: keyPossessed 90ms steps(4, end) infinite;
+  animation-delay: var(--wiggle-delay);
+}
+
+@keyframes keyPossessed {
+  0% { transform: rotate(var(--tilt)) translateX(0); }
+  33% { transform: rotate(calc(var(--tilt) + 1deg)) translateX(1px); }
+  66% { transform: rotate(calc(var(--tilt) - 1deg)) translateX(-1px); }
+  100% { transform: rotate(var(--tilt)) translateX(0); }
+}
+
+/* Subterranean push (keys rising) */
+.rattle .key:nth-child(odd) {
+  animation: riseUp 1.8s ease-in-out infinite;
+  animation-delay: var(--wiggle-delay);
+}
+
+.rattle .key:nth-child(even) {
+  animation: riseUpAlt 2.2s ease-in-out infinite;
+  animation-delay: calc(var(--wiggle-delay) * 1.5);
+}
+
+@keyframes riseUp {
+  0% { transform: rotate(var(--tilt)) translateY(0); }
+  30% { transform: rotate(calc(var(--tilt) + 1deg)) translateY(-4px); }
+  60% { transform: rotate(calc(var(--tilt) - 1deg)) translateY(-2px); }
+  100% { transform: rotate(var(--tilt)) translateY(0); }
+}
+
+@keyframes riseUpAlt {
+  0% { transform: rotate(var(--tilt)) translateY(0); }
+  20% { transform: rotate(calc(var(--tilt)-.5deg)) translateY(-2px); }
+  50% { transform: rotate(calc(var(--tilt)+1.5deg)) translateY(-6px); }
+  100% { transform: rotate(var(--tilt)) translateY(0); }
+}
