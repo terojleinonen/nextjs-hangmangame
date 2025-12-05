@@ -1,5 +1,6 @@
 .gallows {
-  width: 200px;
+  width: 100%;
+  max-width: 200px;
   stroke: var(--burton-ink);
   fill: none;
 }
@@ -23,16 +24,4 @@
 @keyframes sway {
   0%,100% { transform: rotate(0deg); }
   50% { transform: rotate(2deg); }
-}
-
-@media (max-width: 600px) {
-  .gallows {
-    transform: scale(0.75);
-  }
-}
-
-@media (max-width: 400px) {
-  .gallows {
-    transform: scale(0.6);
-  }
 }

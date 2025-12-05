@@ -85,6 +85,18 @@
   }
 }
 
+@media (max-width: 900px) and (orientation: landscape) {
+  .main {
+    grid-template-columns: auto 1fr;
+    gap: 16px; /* reduce gap for smaller screens */
+  }
+
+  .sheet {
+    padding: 18px;
+    margin: 20px auto;
+  }
+}
+
 .reset {
   margin-top: 20px;
   padding: 10px 20px;
